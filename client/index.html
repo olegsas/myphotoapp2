@@ -20,7 +20,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#/login" style = "font-weight: 400; font-size: 15px">Login</a></li>
+                    <li ng-show = "!user"><a href="#/login" style = "font-weight: 400; font-size: 15px">Login</a></li>
                     <li><a href="#/register" style = "font-weight: 400; font-size: 15px">Register</a></li>
                     <li ng-show = "user"><a href="#" ng-controller = "logoutController" ng-click = "logout()" style = "font-weight: 400; font-size: 15px">Logout</a></li>
                 </ul>
