@@ -1,6 +1,9 @@
 var myApp = angular.module('myApp', ['ngRoute']);
 
-myApp.config(function ($routeProvider) {
+myApp.config([
+  '$routeProvider',
+  '$locationProvider',
+  function ($routeProvider, $locationProvider) {
   //console.log("restricted = "+restricted);
   $routeProvider
     .when('/', {
@@ -29,11 +32,15 @@ myApp.config(function ($routeProvider) {
     .when('/two', {
       template: '<h1>This is page two!</h1>',
       access: {restricted: true}
-    })
-    .otherwise({
-      redirectTo: '/'
     });
-});
+    //.otherwise({
+    //  redirectTo: '/'
+    //});
+
+    // Add HTML5 History API support
+    $locationProvider.html5Mode(true);
+  }
+]);
 
 
 myApp.run(function ($rootScope, $location, $route, AuthService) {
