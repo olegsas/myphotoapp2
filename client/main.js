@@ -1,6 +1,7 @@
 var myApp = angular.module('myApp', ['ngRoute']);
 
 myApp.config(function ($routeProvider) {
+  //console.log("restricted = "+restricted);
   $routeProvider
     .when('/', {
       templateUrl: 'templates/home.html',
@@ -39,8 +40,13 @@ myApp.run(function ($rootScope, $location, $route, AuthService) {
   $rootScope.$on('$routeChangeStart',
   function (event, next, current) {
     AuthService.getUserStatus()
-    .then(function(){
+    .then(function(data){
+      console.log("")
+      console.log("next.access.restricted = "+next.access.restricted);
+      console.log("next = "+next);
+      console.log("data = "+data);
       if (next.access.restricted && !AuthService.isLoggedIn()) {
+        console.log("reroute - not logged in");
         $location.path('/login');
         $route.reload();
       }
